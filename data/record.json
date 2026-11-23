@@ -1,0 +1,144 @@
+{
+  "generators": {
+    "lane-a/c0": [
+      -0.3,
+      0.3
+    ],
+    "lane-b/c0": [
+      -0.3,
+      0.3
+    ],
+    "lane-a/extra": [
+      -0.05,
+      0.05
+    ]
+  },
+  "inputs": {
+    "x": {
+      "base": [
+        0.41,
+        0.2
+      ],
+      "offsets": {
+        "lane-a/c0": [
+          1,
+          0.5
+        ]
+      }
+    },
+    "y": {
+      "base": [
+        0.11,
+        0.1
+      ],
+      "offsets": {
+        "lane-a/c0": [
+          1,
+          0
+        ],
+        "lane-a/extra": [
+          0,
+          1
+        ]
+      }
+    }
+  },
+  "nodes": [
+    [
+      "d",
+      "add",
+      [
+        "x",
+        "y"
+      ],
+      [
+        1,
+        -1
+      ]
+    ],
+    [
+      "r",
+      "relu",
+      [
+        "d"
+      ],
+      []
+    ],
+    [
+      "p",
+      "clamp",
+      [
+        "x"
+      ],
+      [
+        0,
+        0.4
+      ]
+    ],
+    [
+      "q",
+      "add",
+      [
+        "r",
+        "p"
+      ],
+      [
+        1,
+        -1
+      ]
+    ],
+    [
+      "v",
+      "linear",
+      [
+        "q"
+      ],
+      [
+        [
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            -2
+          ]
+        ],
+        0.12
+      ]
+    ]
+  ],
+  "queries": [
+    {
+      "id": "affine",
+      "node": "d",
+      "coordinate": 0,
+      "threshold": 0.25
+    },
+    {
+      "id": "gate",
+      "node": "v",
+      "coordinate": 0,
+      "threshold": 0.02
+    }
+  ],
+  "relation_changes": [
+    {
+      "input": "y",
+      "replace": "lane-a/c0",
+      "with": "lane-b/c0"
+    },
+    {
+      "input": "y",
+      "replace": "lane-b/c0",
+      "with": null
+    }
+  ],
+  "scale": {
+    "channels": 16384,
+    "edges": 180000,
+    "scratch_bytes": 16777216
+  }
+}
