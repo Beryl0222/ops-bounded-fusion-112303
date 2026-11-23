@@ -140,5 +140,47 @@
     "channels": 16384,
     "edges": 180000,
     "scratch_bytes": 16777216
-  }
+  },
+  "point_reads": [
+    {
+      "id": "line-sample-1",
+      "before_change": 0,
+      "values": {
+        "lane-a/c0": 0.1,
+        "lane-a/extra": -0.03
+      }
+    },
+    {
+      "id": "line-sample-2",
+      "before_change": 1,
+      "values": {
+        "lane-a/c0": -0.05,
+        "lane-a/extra": 0.02,
+        "lane-b/c0": 0.08
+      }
+    },
+    {
+      "id": "line-sample-3",
+      "before_change": 2,
+      "values": {
+        "lane-a/c0": -0.05,
+        "lane-a/extra": 0.02
+      },
+      "unlinked": {
+        "y": {
+          "lane-b/c0": 0.08
+        }
+      }
+    }
+  ],
+  "refinements": [
+    {
+      "generator": "lane-a/c0",
+      "range": [
+        -0.12,
+        0.16
+      ],
+      "before_change": 1
+    }
+  ]
 }

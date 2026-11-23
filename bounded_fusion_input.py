@@ -7,7 +7,7 @@ import numpy as np
 
 
 SAMPLE = Path(__file__).resolve().parent / "data" / "record.json"
-FIELDS = ('generators', 'inputs', 'nodes', 'queries', 'relation_changes', 'scale')
+FIELDS = ('generators', 'inputs', 'nodes', 'queries', 'relation_changes', 'scale', 'point_reads', 'refinements')
 
 
 def load_record(path=SAMPLE):
